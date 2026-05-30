@@ -1,0 +1,154 @@
+Gizlilik Siyasətinin **İngilis dilində** olan HTML versiyasını aşağıda təqdim edirəm:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repello - Privacy Policy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0D1117;
+            --surface-color: #161B22;
+            --accent-color: #2EA043;
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --border-color: #21262D;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .date {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Privacy Policy</h1>
+    <div class="date">Last Updated: May 31, 2026</div>
+
+    <p>At <span class="highlight">Repello</span> ("we", "our", "the App"), we respect your privacy and are committed to protecting any information processed through our application. This Privacy Policy describes how we handle device permissions, third-party services, and user data.</p>
+
+    <h2>1. Information Collection & Permissions</h2>
+    <p>To provide its core features and operate effectively, Repello requires the following permissions and access to your device's features:</p>
+    <ul>
+        <li><span class="highlight">Camera Permission (AI Scanner):</span> Used solely to take photos of animal or insect bite/scratch marks for classification. The captured images are processed dynamically and are not stored permanently on any server or shared with third parties.</li>
+        <li><span class="highlight">Location Permission:</span> Used to detect your current city and country to customize the Discover section, displaying local insect and animal prevalence probabilities. Mapped location data is only processed temporarily.</li>
+        <li><span class="highlight">Local Audio Generator:</span> The ultrasonic Hz frequencies used to repel animals are generated locally on your device. No audio information or recordings are stored or transmitted.</li>
+    </ul>
+
+    <h2>2. Artificial Intelligence (AI) Services</h2>
+    <p>We use <span class="highlight">Firebase Vertex AI / Gemini API</span> to analyze bite and scratch mark images. The images you scan are securely processed in real-time for classification purposes only. We do not gather or link personal identity details with these scans.</p>
+
+    <h2>3. Third-Party Ad Services</h2>
+    <p>To keep this application free of charge, we display advertisements. Ad networks may collect and use technical identifiers from your device to serve personalized or non-personalized ads:</p>
+    <ul>
+        <li><span class="highlight">Google Mobile Ads (AdMob):</span> Used to display banners and interstitial ads throughout the application. You can read Google AdMob’s privacy policy here: <a href="https://policies.google.com/privacy" target="_blank">Google Privacy & Terms</a>.</li>
+    </ul>
+
+    <h2>4. Data Security</h2>
+    <p>We implement industry-standard security measures to safeguard your technical information. Image files and location inputs are treated dynamically and are not retained in any databases once the session or processing ends.</p>
+
+    <h2>5. Children's Privacy</h2>
+    <p>Repello does not knowingly collect personal identifiable information from children under 13. If we discover that a child under 13 has provided us with personal information, we immediately delete this from our records.</p>
+
+    <h2>6. Changes to this Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page and will become effective immediately upon publishing.</p>
+
+    <h2>7. Contact Us</h2>
+    <p>If you have any questions or feedback regarding this Privacy Policy, please feel free to reach out to us at:</p>
+    <p><span class="highlight">Email:</span> <a href="mailto:support@repello.app">support@repello.app</a></p>
+
+    <footer>
+        <p>&copy; 2026 Repello. All rights reserved.</p>
+    </footer>
+</div>
+
+</body>
+</html>
+```
