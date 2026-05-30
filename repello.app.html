@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repello — Zərərsiz Qorunma və Ağıllı AI Skaner</title>
+    <title>Repello — Harmless Protection & Smart AI Disease Scanner</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,17 +13,20 @@
             --card-color: #1C2128;
             --accent-primary: #2EA043;
             --accent-secondary: #388BFD;
+            --danger-color: #F85149;
             --text-primary: #E6EDF3;
             --text-secondary: #8B949E;
             --border-color: #21262D;
             --glass-bg: rgba(22, 27, 34, 0.8);
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
@@ -31,12 +34,14 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
         /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
         }
+
         /* Header / Navbar */
         header {
             position: fixed;
@@ -47,14 +52,16 @@
             background-color: var(--glass-bg);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
-            padding: 16px 0;
+            padding: 18px 0;
             transition: all 0.3s ease;
         }
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 28px;
@@ -63,14 +70,17 @@
             text-decoration: none;
             letter-spacing: 1px;
         }
+
         .logo span {
             color: var(--accent-primary);
         }
+
         .nav-links {
             display: flex;
             gap: 32px;
             list-style: none;
         }
+
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -78,13 +88,15 @@
             transition: color 0.3s;
             font-size: 15px;
         }
+
         .nav-links a:hover {
             color: var(--accent-primary);
         }
+
         .btn-download {
             background-color: var(--accent-primary);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
@@ -92,178 +104,277 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
         }
+
         .btn-download:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(46, 160, 67, 0.5);
         }
-        /* Hero Section */
+
+        /* Hero Section (Centered & Minimalist) */
         .hero {
-            padding: 160px 0 80px 0;
+            padding: 180px 0 100px 0;
+            text-align: center;
+            position: relative;
+            min-height: 85vh;
             display: flex;
             align-items: center;
-            min-height: 100vh;
-            position: relative;
         }
-        .hero::before {
-            content: '';
+
+        .hero-glow {
             position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(46, 160, 67, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(46, 160, 67, 0.12) 0%, transparent 65%);
             z-index: 1;
             pointer-events: none;
         }
-        .hero-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
+
+        .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .hero-text h1 {
+
+        .hero-content h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 52px;
-            line-height: 1.1;
+            font-size: 58px;
+            line-height: 1.15;
             font-weight: 700;
             margin-bottom: 24px;
+            letter-spacing: -1px;
         }
-        .hero-text h1 span {
+
+        .hero-content h1 span {
             color: var(--accent-primary);
             background: linear-gradient(135deg, var(--accent-primary), #4ade80);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .hero-text p {
-            font-size: 18px;
+
+        .hero-content p {
+            font-size: 19px;
             color: var(--text-secondary);
-            margin-bottom: 40px;
+            margin-bottom: 44px;
+            font-weight: 300;
         }
+
         .download-badges {
             display: flex;
-            gap: 16px;
+            gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
         }
+
         .badge-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
-            padding: 12px 24px;
-            border-radius: 12px;
+            padding: 14px 28px; /* Added extra padding */
+            border-radius: 14px;
             text-decoration: none;
             color: var(--text-primary);
             transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+
         .badge-btn i {
-            font-size: 24px;
+            font-size: 28px;
         }
+
         .badge-btn:hover {
             border-color: var(--accent-primary);
             background-color: var(--card-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
-        .badge-btn .btn-info span {
+
+        .btn-info {
+            text-align: left;
+        }
+
+        .btn-info span {
             display: block;
             font-size: 11px;
             color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-        .badge-btn .btn-info strong {
-            font-size: 15px;
+
+        .btn-info strong {
+            font-size: 16px;
+            font-weight: 600;
         }
-        /* Hero Image Mockup */
-        .hero-image {
-            display: flex;
-            justify-content: center;
+
+        /* Threat / Disease Section (New Section) */
+        .threat-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
             position: relative;
         }
-        .phone-mockup {
-            width: 290px;
-            height: 580px;
-            background-color: #000;
-            border: 8px solid #2d3748;
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(46, 160, 67, 0.2);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+
+        .threat-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 60px;
+            align-items: start;
         }
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 140px;
-            height: 24px;
-            background-color: #2d3748;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
-            z-index: 10;
-        }
-        .phone-screen {
-            flex: 1;
-            background-color: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-        }
-        /* Pulse wave animation inside mockup */
-        .pulse-circle {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: rgba(46, 160, 67, 0.08);
-            border: 1px solid var(--accent-primary);
-            animation: pulseWave 3s infinite linear;
-            pointer-events: none;
-        }
-        .pulse-circle-2 {
-            animation-delay: 1.5s;
-        }
-        .app-name-display {
+
+        .threat-info h2 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 38px;
-            font-weight: 700;
-            z-index: 5;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
-        .app-name-display span {
-            color: var(--accent-primary);
+
+        .threat-info h2 span {
+            color: var(--danger-color);
         }
-        /* Features Section */
-        .features {
+
+        .threat-info p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .threat-card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .threat-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--danger-color);
+            padding: 24px;
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .threat-icon {
+            font-size: 26px;
+            background-color: rgba(248, 81, 73, 0.1);
+            color: var(--danger-color);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .threat-details h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .threat-details p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Animals Directory Section */
+        .directory-section {
             padding: 100px 0;
             background-color: var(--surface-color);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
         }
-        .section-header {
+
+        .directory-box {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+        }
+
+        .directory-box h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .directory-box p {
+            color: var(--text-secondary);
             text-align: center;
             max-width: 600px;
+            margin: 0 auto 36px auto;
+            font-size: 15px;
+        }
+
+        .animal-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .animal-group h4 {
+            color: var(--accent-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .animal-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .animal-list li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .animal-list li i {
+            color: var(--accent-primary);
+            font-size: 12px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
             margin: 0 auto 64px auto;
         }
+
         .section-header h2 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 38px;
             margin-bottom: 16px;
         }
+
         .section-header p {
             color: var(--text-secondary);
             font-size: 16px;
         }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 32px;
         }
+
         .feature-card {
             background-color: var(--card-color);
             border: 1px solid var(--border-color);
@@ -271,93 +382,73 @@
             border-radius: 20px;
             transition: all 0.3s ease;
         }
+
         .feature-card:hover {
             transform: translateY(-8px);
             border-color: var(--accent-primary);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
+
         .feature-icon {
-            width: 64px;
-            height: 64px;
+            width: 60px;
+            height: 60px;
             background-color: rgba(46, 160, 67, 0.1);
             border: 1px solid rgba(46, 160, 67, 0.2);
-            border-radius: 16px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
         }
+
         .feature-icon i {
-            font-size: 28px;
+            font-size: 26px;
             color: var(--accent-primary);
         }
+
         .feature-card h3 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 22px;
             margin-bottom: 12px;
         }
+
         .feature-card p {
             color: var(--text-secondary);
             font-size: 15px;
         }
-        /* How it works Section */
-        .how-it-works {
-            padding: 100px 0;
-        }
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-        .step {
-            text-align: center;
-            position: relative;
-        }
-        .step-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 64px;
-            font-weight: 700;
-            color: rgba(46, 160, 67, 0.2);
-            line-height: 1;
-            margin-bottom: 16px;
-        }
-        .step h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-        .step p {
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
+
         /* CTA Section */
         .cta {
             padding: 100px 0;
             background: linear-gradient(135deg, rgba(22, 27, 34, 0.6) 0%, rgba(46, 160, 67, 0.08) 100%);
             border-top: 1px solid var(--border-color);
-            position: relative;
             text-align: center;
         }
+
         .cta-content h2 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 42px;
             margin-bottom: 16px;
         }
+
         .cta-content p {
             color: var(--text-secondary);
             font-size: 18px;
             max-width: 600px;
             margin: 0 auto 40px auto;
         }
+
         .cta .download-badges {
             justify-content: center;
         }
+
         /* Footer */
         footer {
             background-color: var(--bg-color);
             border-top: 1px solid var(--border-color);
             padding: 40px 0;
         }
+
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -365,56 +456,43 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .footer-text {
             color: var(--text-secondary);
             font-size: 14px;
         }
+
         .footer-links {
             display: flex;
             gap: 24px;
             list-style: none;
         }
+
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
         }
+
         .footer-links a:hover {
             color: var(--accent-primary);
         }
-        /* Animations */
-        @keyframes pulseWave {
-            0% {
-                transform: scale(0.6);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(2.2);
-                opacity: 0;
-            }
-        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
-            .hero-row {
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            .hero-content p {
+                font-size: 17px;
+            }
+            .threat-grid {
                 grid-template-columns: 1fr;
-                gap: 48px;
-                text-align: center;
-            }
-            .hero-text h1 {
-                font-size: 40px;
-            }
-            .download-badges {
-                justify-content: center;
-            }
-            .hero-image {
-                order: -1;
-            }
-            .steps-container {
-                grid-template-columns: 1fr;
-                gap: 48px;
+                gap: 40px;
             }
         }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -422,156 +500,217 @@
             .container {
                 padding: 0 16px;
             }
-            .section-header h2 {
-                font-size: 32px;
+            .directory-box {
+                padding: 24px;
             }
         }
     </style>
 </head>
 <body>
+
     <!-- Header Navigation -->
     <header>
         <div class="container navbar">
             <a href="#" class="logo">Re<span>p</span>ello</a>
             <ul class="nav-links">
-                <li><a href="#features">Özəlliklər</a></li>
-                <li><a href="#how-it-works">Necə İşləyir?</a></li>
-                <li><a href="#download">Yüklə</a></li>
+                <li><a href="#threats">Threats</a></li>
+                <li><a href="#directory">Supported Species</a></li>
+                <li><a href="#features">Features</a></li>
             </ul>
-            <a href="#download" class="btn-download">İndi Yüklə</a>
+            <a href="#download" class="btn-download">Download App</a>
         </div>
     </header>
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-row">
-            <div class="hero-text">
-                <h1>Zərərli Maddələrdən Uzaq, <span>Ağıllı Qorunma</span></h1>
-                <p>Repello ilə ərazinizi kimyəvi maddələrdən təmiz saxlayın! Həşərat və heyvanları onlara heç bir zərər vermədən yalnız zərərsiz ultrasonik səs tezlikləri (Hz) vasitəsilə təbii şəkildə uzaqlaşdırın.</p>
-                <div class="download-badges">
-                    <a href="#download" class="badge-btn">
-                        <i class="fab fa-google-play"></i>
-                        <div class="btn-info">
-                            <span>YÜKLƏ</span>
-                            <strong>Google Play</strong>
-                        </div>
-                    </a>
-                    <a href="#download" class="badge-btn">
-                        <i class="fab fa-apple"></i>
-                        <div class="btn-info">
-                            <span>YÜKLƏ</span>
-                            <strong>App Store</strong>
-                        </div>
-                    </a>
-                </div>
+        <div class="hero-glow"></div>
+        <div class="container hero-content">
+            <h1>Harm-Free Insect & Animal <span>Repeller</span></h1>
+            <p>Shield your living spaces and outdoor camps using scientifically tuned, non-lethal ultrasonic frequencies (Hz). Keep insects and wild pests at bay naturally, without toxic chemical sprays or coils.</p>
+            <div class="download-badges">
+                <a href="#download" class="badge-btn">
+                    <i class="fab fa-apple"></i>
+                    <div class="btn-info">
+                        <span>Get it on</span>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#download" class="badge-btn">
+                    <i class="fab fa-google-play"></i>
+                    <div class="btn-info">
+                        <span>Get it on</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
             </div>
-            <div class="hero-image">
-                <!-- Glowing animated Phone Mockup -->
-                <div class="phone-mockup">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <div class="pulse-circle"></div>
-                        <div class="pulse-circle pulse-circle-2"></div>
-                        <div class="app-name-display">Re<span>p</span>ello</div>
+        </div>
+    </section>
+
+    <!-- Threats Section (New) -->
+    <section id="threats" class="threat-section">
+        <div class="container threat-grid">
+            <div class="threat-info">
+                <h2>The Growing Threat of <span>Vector-Borne Diseases</span></h2>
+                <p>Global warming and urbanization have triggered a significant surge in vector-borne diseases and animal conflicts. Pests and wild intruders carry critical viruses and parasites that put family health at risk.</p>
+                <p>Chemical repellents contain toxic agents like DEET which pollute the ecosystem and cause skin irritation. Repello provides a clean, eco-friendly frequency shield to ward off carriers cleanly.</p>
+            </div>
+            <div class="threat-card-container">
+                <!-- Threat 1 -->
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-mosquito"></i></div>
+                    <div class="threat-details">
+                        <h4>Mosquito & Tick-Borne Pathogens</h4>
+                        <p><strong>Mosquitoes</strong> transmit deadly malaria, Dengue, and Zika. Meanwhile, <strong>Ticks</strong> carry Lyme Disease and Tick-Borne Encephalitis. Repello's Hz generator disrupts their host-seeking behavior.</p>
+                    </div>
+                </div>
+                <!-- Threat 2 -->
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-biohazard"></i></div>
+                    <div class="threat-details">
+                        <h4>Rabies & Zoonotic Risks</h4>
+                        <p>Stray <strong>Dogs</strong>, <strong>Wolves</strong>, <strong>Foxes</strong>, and <strong>Jackals</strong> can carry Rabies, a fatal neurotropic virus. Protecting boundaries with ultrasonic barriers prevents aggressive encounters.</p>
+                    </div>
+                </div>
+                <!-- Threat 3 -->
+                <div class="threat-card">
+                    <div class="threat-icon"><i class="fas fa-bacteria"></i></div>
+                    <div class="threat-details">
+                        <h4>Bacterial Contamination</h4>
+                        <p>Nesting <strong>Rats</strong> spread Leptospirosis and Hantavirus via feed contamination, while <strong>Moles</strong> and <strong>Ants</strong> ruin backyard ecosystems and introduce soil-borne pathogens.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Supported Animals Directory (List App Animals) -->
+    <section id="directory" class="directory-section">
+        <div class="container">
+            <div class="directory-box">
+                <h3>Built-In Species Dictionary</h3>
+                <p>Repello is equipped with targeted frequency channels specifically tuned for the audio ranges and vibration sensitivities of these species:</p>
+                
+                <div class="animal-groups">
+                    <!-- Group 1: Insects -->
+                    <div class="animal-group">
+                        <h4>Insects</h4>
+                        <ul class="animal-list">
+                            <li><i class="fas fa-shield-halved"></i> Mosquitoes</li>
+                            <li><i class="fas fa-shield-halved"></i> Ticks</li>
+                            <li><i class="fas fa-shield-halved"></i> Wasps</li>
+                            <li><i class="fas fa-shield-halved"></i> Ants</li>
+                            <li><i class="fas fa-shield-halved"></i> Horseflies</li>
+                            <li><i class="fas fa-shield-halved"></i> Cockroaches</li>
+                        </ul>
+                    </div>
+                    <!-- Group 2: Reptiles & Birds -->
+                    <div class="animal-group">
+                        <h4>Reptiles & Birds</h4>
+                        <ul class="animal-list">
+                            <li><i class="fas fa-shield-halved"></i> Common Vipers</li>
+                            <li><i class="fas fa-shield-halved"></i> Grass Snakes</li>
+                            <li><i class="fas fa-shield-halved"></i> Smooth Snakes</li>
+                            <li><i class="fas fa-shield-halved"></i> Crows</li>
+                        </ul>
+                    </div>
+                    <!-- Group 3: Small Mammals -->
+                    <div class="animal-group">
+                        <h4>Small Mammals</h4>
+                        <ul class="animal-list">
+                            <li><i class="fas fa-shield-halved"></i> Rats</li>
+                            <li><i class="fas fa-shield-halved"></i> Moles</li>
+                            <li><i class="fas fa-shield-halved"></i> Domestic Cats</li>
+                        </ul>
+                    </div>
+                    <!-- Group 4: Large Animals -->
+                    <div class="animal-group">
+                        <h4>Large & Wild Animals</h4>
+                        <ul class="animal-list">
+                            <li><i class="fas fa-shield-halved"></i> Domestic Dogs</li>
+                            <li><i class="fas fa-shield-halved"></i> Wolves</li>
+                            <li><i class="fas fa-shield-halved"></i> Jackals</li>
+                            <li><i class="fas fa-shield-halved"></i> Foxes</li>
+                            <li><i class="fas fa-shield-halved"></i> Wild Boars</li>
+                            <li><i class="fas fa-shield-halved"></i> Bears & Deer</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
-                <h2>Əsas Özəllikləri</h2>
-                <p>Repello sizin təhlükəsizliyiniz və rahatlığınız üçün ən müasir süni intellekt və səs dalğası texnologiyalarından istifadə edir.</p>
+                <h2>Explore the App</h2>
+                <p>Innovative features engineered to protect your family and pet companions cleanly.</p>
             </div>
             <div class="features-grid">
                 <!-- Feature 1 -->
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-volume-up"></i>
+                        <i class="fas fa-wave-square"></i>
                     </div>
-                    <h3>Ultrasonik Hz Tezliyi</h3>
-                    <p>Hər bir heyvan və həşərat növünə uyğun, onların oriyentasiyasını pozan və yalnız onları uzaqlaşdıran zərərsiz ultrasəs tezlikləri ilə təhlükəsiz sahə yaradın.</p>
+                    <h3>Tuned Frequencies</h3>
+                    <p>Access customized Hz levels optimized for pests like wasps, mosquitoes, or rodents, keeping them away without causing permanent biological harm.</p>
                 </div>
                 <!-- Feature 2 -->
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-microscope"></i>
                     </div>
-                    <h3>Ağıllı AI Skaner</h3>
-                    <p>Bədəndəki hər hansı cızıq və ya dişləmənin şəklini kamera ilə skan edin; tətbiqin süni intellekti heyvanın növünü təyin edərək müvafiq tezliyi avtomatik seçsin.</p>
+                    <h3>Smart AI Scanner</h3>
+                    <p>Snap a photo of any mysterious bite, sting, or scratch mark on your skin. Our localized AI analyzer quickly identifies the species and matches the correct counter-frequency.</p>
                 </div>
                 <!-- Feature 3 -->
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-history"></i>
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <h3>Arxa Fon və Taymer</h3>
-                    <p>Tezlik işə salındıqdan sonra taymeri təyin edin və tətbiqi arxa fonda işlədin. Ekranınız kilidli olsa belə tətbiq fonda aktiv qalır və batareyaya qənaət edir.</p>
+                    <h3>Background Timer</h3>
+                    <p>Activate the frequency loop, set the timer, and let it run. Repello works efficiently in the background saving battery while your device is locked.</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- How it works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>Necə İşləyir?</h2>
-                <p>Cəmi 3 sadə addımla ərazinizi mühafizə edin və ya dişləmə izlərini skan edin.</p>
-            </div>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">01</div>
-                    <h3>Heyvanı Seçin və ya Skan Edin</h3>
-                    <p>Siyahıdan uzaqlaşdırmaq istədiyiniz heyvanı/həşəratı seçin və ya naməlum dişləmə izini AI Skaner ilə yoxlayın.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">02</div>
-                    <h3>Tezliyi İşə Salın</h3>
-                    <p>Müəyyən edilmiş hədəf tezliyini yayımlamaq üçün "Başlat" düyməsinə klikləyin. Səviyyəni özünüz də tənzimləyə bilərsiniz.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">03</div>
-                    <h3>Taymerlə Arxa Fonda İdarə Edin</h3>
-                    <p>Fasiləsiz qorunma üçün vaxtı təyin edin və telefonunuzdan digər işləriniz üçün normal istifadə etməyə davam edin.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- CTA Section -->
     <section id="download" class="cta">
         <div class="container cta-content">
-            <h2>İndi Repello Yükləyin!</h2>
-            <p>Bütün növ heyvan və həşəratlara qarşı təbii, zərərsiz və ağıllı qorunma qalxanını cibinizdə daşıyın.</p>
+            <h2>Start Protecting Today</h2>
+            <p>Get Repello now and equip your phone with a clean, ultrasonic protection shield.</p>
             <div class="download-badges">
-                <a href="#" class="badge-btn" onclick="alert('Tezliklə Google Play-də!'); return false;">
-                    <i class="fab fa-google-play"></i>
-                    <div class="btn-info">
-                        <span>YÜKLƏ</span>
-                        <strong>Google Play</strong>
-                    </div>
-                </a>
-                <a href="#" class="badge-btn" onclick="alert('Tezliklə App Store-da!'); return false;">
+                <a href="#" class="badge-btn" onclick="alert('Coming soon to App Store!'); return false;">
                     <i class="fab fa-apple"></i>
                     <div class="btn-info">
-                        <span>YÜKLƏ</span>
+                        <span>Get it on</span>
                         <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#" class="badge-btn" onclick="alert('Coming soon to Google Play!'); return false;">
+                    <i class="fab fa-google-play"></i>
+                    <div class="btn-info">
+                        <span>Get it on</span>
+                        <strong>Google Play</strong>
                     </div>
                 </a>
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
             <div class="footer-text">
-                &copy; 2026 Repello. Bütün hüquqlar qorunur.
+                &copy; 2026 Repello. All rights reserved.
             </div>
             <ul class="footer-links">
-                <li><a href="#" onclick="alert('Sayta yerləşdirdiyiniz Privacy Policy səhifəsinə keçid verin'); return false;">Gizlilik Siyasəti</a></li>
-                <li><a href="mailto:support@repello.app">Dəstək</a></li>
+                <li><a href="#" onclick="alert('Link your published Privacy Policy HTML page here'); return false;">Privacy Policy</a></li>
+                <li><a href="mailto:support@repello.app">Support</a></li>
             </ul>
         </div>
     </footer>
+
 </body>
 </html>
