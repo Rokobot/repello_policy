@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repello — Zərərsiz Qorunma və Ağıllı AI Skaner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0D1117;
+            --surface-color: #161B22;
+            --card-color: #1C2128;
+            --accent-primary: #2EA043;
+            --accent-secondary: #388BFD;
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --border-color: #21262D;
+            --glass-bg: rgba(22, 27, 34, 0.8);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--accent-primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+        .btn-download {
+            background-color: var(--accent-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 160, 67, 0.5);
+        }
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 80px 0;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(46, 160, 67, 0.15) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 52px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        .hero-text h1 span {
+            color: var(--accent-primary);
+            background: linear-gradient(135deg, var(--accent-primary), #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        .download-badges {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .badge-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+        .badge-btn i {
+            font-size: 24px;
+        }
+        .badge-btn:hover {
+            border-color: var(--accent-primary);
+            background-color: var(--card-color);
+            transform: translateY(-2px);
+        }
+        .badge-btn .btn-info span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .badge-btn .btn-info strong {
+            font-size: 15px;
+        }
+        /* Hero Image Mockup */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .phone-mockup {
+            width: 290px;
+            height: 580px;
+            background-color: #000;
+            border: 8px solid #2d3748;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(46, 160, 67, 0.2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 24px;
+            background-color: #2d3748;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 10;
+        }
+        .phone-screen {
+            flex: 1;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        /* Pulse wave animation inside mockup */
+        .pulse-circle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: rgba(46, 160, 67, 0.08);
+            border: 1px solid var(--accent-primary);
+            animation: pulseWave 3s infinite linear;
+            pointer-events: none;
+        }
+        .pulse-circle-2 {
+            animation-delay: 1.5s;
+        }
+        .app-name-display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            z-index: 5;
+            letter-spacing: 1px;
+        }
+        .app-name-display span {
+            color: var(--accent-primary);
+        }
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px auto;
+        }
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background-color: rgba(46, 160, 67, 0.1);
+            border: 1px solid rgba(46, 160, 67, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--accent-primary);
+        }
+        .feature-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+        /* How it works Section */
+        .how-it-works {
+            padding: 100px 0;
+        }
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: rgba(46, 160, 67, 0.2);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .step h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .step p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(22, 27, 34, 0.6) 0%, rgba(46, 160, 67, 0.08) 100%);
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            text-align: center;
+        }
+        .cta-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+        .cta-content p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+        .cta .download-badges {
+            justify-content: center;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+        /* Animations */
+        @keyframes pulseWave {
+            0% {
+                transform: scale(0.6);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-row {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 40px;
+            }
+            .download-badges {
+                justify-content: center;
+            }
+            .hero-image {
+                order: -1;
+            }
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .section-header h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">Re<span>p</span>ello</a>
+            <ul class="nav-links">
+                <li><a href="#features">Özəlliklər</a></li>
+                <li><a href="#how-it-works">Necə İşləyir?</a></li>
+                <li><a href="#download">Yüklə</a></li>
+            </ul>
+            <a href="#download" class="btn-download">İndi Yüklə</a>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-row">
+            <div class="hero-text">
+                <h1>Zərərli Maddələrdən Uzaq, <span>Ağıllı Qorunma</span></h1>
+                <p>Repello ilə ərazinizi kimyəvi maddələrdən təmiz saxlayın! Həşərat və heyvanları onlara heç bir zərər vermədən yalnız zərərsiz ultrasonik səs tezlikləri (Hz) vasitəsilə təbii şəkildə uzaqlaşdırın.</p>
+                <div class="download-badges">
+                    <a href="#download" class="badge-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div class="btn-info">
+                            <span>YÜKLƏ</span>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                    <a href="#download" class="badge-btn">
+                        <i class="fab fa-apple"></i>
+                        <div class="btn-info">
+                            <span>YÜKLƏ</span>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Glowing animated Phone Mockup -->
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="pulse-circle"></div>
+                        <div class="pulse-circle pulse-circle-2"></div>
+                        <div class="app-name-display">Re<span>p</span>ello</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Əsas Özəllikləri</h2>
+                <p>Repello sizin təhlükəsizliyiniz və rahatlığınız üçün ən müasir süni intellekt və səs dalğası texnologiyalarından istifadə edir.</p>
+            </div>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3>Ultrasonik Hz Tezliyi</h3>
+                    <p>Hər bir heyvan və həşərat növünə uyğun, onların oriyentasiyasını pozan və yalnız onları uzaqlaşdıran zərərsiz ultrasəs tezlikləri ilə təhlükəsiz sahə yaradın.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Ağıllı AI Skaner</h3>
+                    <p>Bədəndəki hər hansı cızıq və ya dişləmənin şəklini kamera ilə skan edin; tətbiqin süni intellekti heyvanın növünü təyin edərək müvafiq tezliyi avtomatik seçsin.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Arxa Fon və Taymer</h3>
+                    <p>Tezlik işə salındıqdan sonra taymeri təyin edin və tətbiqi arxa fonda işlədin. Ekranınız kilidli olsa belə tətbiq fonda aktiv qalır və batareyaya qənaət edir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How it works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Necə İşləyir?</h2>
+                <p>Cəmi 3 sadə addımla ərazinizi mühafizə edin və ya dişləmə izlərini skan edin.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Heyvanı Seçin və ya Skan Edin</h3>
+                    <p>Siyahıdan uzaqlaşdırmaq istədiyiniz heyvanı/həşəratı seçin və ya naməlum dişləmə izini AI Skaner ilə yoxlayın.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Tezliyi İşə Salın</h3>
+                    <p>Müəyyən edilmiş hədəf tezliyini yayımlamaq üçün "Başlat" düyməsinə klikləyin. Səviyyəni özünüz də tənzimləyə bilərsiniz.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>Taymerlə Arxa Fonda İdarə Edin</h3>
+                    <p>Fasiləsiz qorunma üçün vaxtı təyin edin və telefonunuzdan digər işləriniz üçün normal istifadə etməyə davam edin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <section id="download" class="cta">
+        <div class="container cta-content">
+            <h2>İndi Repello Yükləyin!</h2>
+            <p>Bütün növ heyvan və həşəratlara qarşı təbii, zərərsiz və ağıllı qorunma qalxanını cibinizdə daşıyın.</p>
+            <div class="download-badges">
+                <a href="#" class="badge-btn" onclick="alert('Tezliklə Google Play-də!'); return false;">
+                    <i class="fab fa-google-play"></i>
+                    <div class="btn-info">
+                        <span>YÜKLƏ</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+                <a href="#" class="badge-btn" onclick="alert('Tezliklə App Store-da!'); return false;">
+                    <i class="fab fa-apple"></i>
+                    <div class="btn-info">
+                        <span>YÜKLƏ</span>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-text">
+                &copy; 2026 Repello. Bütün hüquqlar qorunur.
+            </div>
+            <ul class="footer-links">
+                <li><a href="#" onclick="alert('Sayta yerləşdirdiyiniz Privacy Policy səhifəsinə keçid verin'); return false;">Gizlilik Siyasəti</a></li>
+                <li><a href="mailto:support@repello.app">Dəstək</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
